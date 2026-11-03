@@ -14,28 +14,28 @@ final class Csrf
     /**
      * token
      */
-    public function token(/* ... */): mixed
+    public function token()
     {
-        return $this->data["_token"] ?? bin2hex(random_bytes(16));
+        return null;
     }
     /**
      * field
      */
-    public function field(/* ... */): mixed
+    public function field()
     {
         return null;
     }
     /**
      * rotate
      */
-    public function rotate(/* ... */): mixed
+    public function rotate()
     {
         return null;
     }
     /**
      * verify
      */
-    public function verify(/* ... */): mixed
+    public function verify()
     {
         return null;
     }

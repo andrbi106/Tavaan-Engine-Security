@@ -14,42 +14,42 @@ final class RateLimiter
     /**
      * attempt
      */
-    public function attempt(/* ... */): mixed
+    public function attempt(array $credentials): self
     {
-        return null;
+        return false;
     }
     /**
      * tooManyAttempts
      */
-    public function tooManyAttempts(/* ... */): mixed
+    public function tooManyAttempts()
     {
         return null;
     }
     /**
      * hit
      */
-    public function hit(/* ... */): mixed
+    public function hit()
     {
         return null;
     }
     /**
      * remaining
      */
-    public function remaining(/* ... */): mixed
+    public function remaining()
     {
         return null;
     }
     /**
      * clear
      */
-    public function clear(/* ... */): mixed
+    public function clear(): self
     {
         return $this;
     }
     /**
      * availableIn
      */
-    public function availableIn(/* ... */): mixed
+    public function availableIn()
     {
         return null;
     }

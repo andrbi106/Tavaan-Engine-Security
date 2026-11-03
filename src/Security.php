@@ -14,35 +14,35 @@ final class Security
     /**
      * sanitize
      */
-    public function sanitize(/* ... */): mixed
+    public function sanitize()
     {
         return null;
     }
     /**
      * sign
      */
-    public function sign(/* ... */): mixed
+    public function sign()
     {
         return null;
     }
     /**
      * validateSignature
      */
-    public function validateSignature(/* ... */): mixed
+    public function validateSignature()
     {
         return null;
     }
     /**
      * normalize
      */
-    public function normalize(/* ... */): mixed
+    public function normalize()
     {
         return null;
     }
     /**
      * ssrfCheck
      */
-    public function ssrfCheck(/* ... */): mixed
+    public function ssrfCheck()
     {
         return null;
     }
