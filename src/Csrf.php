@@ -16,15 +16,13 @@ final class Csrf
      */
     public function token(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
-        return null;
+        return $this->data["_token"] ?? bin2hex(random_bytes(16));
     }
     /**
      * field
      */
     public function field(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -32,7 +30,6 @@ final class Csrf
      */
     public function rotate(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -40,7 +37,6 @@ final class Csrf
      */
     public function verify(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
 }

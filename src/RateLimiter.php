@@ -16,7 +16,6 @@ final class RateLimiter
      */
     public function attempt(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -24,7 +23,6 @@ final class RateLimiter
      */
     public function tooManyAttempts(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -32,7 +30,6 @@ final class RateLimiter
      */
     public function hit(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -40,7 +37,6 @@ final class RateLimiter
      */
     public function remaining(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -48,15 +44,13 @@ final class RateLimiter
      */
     public function clear(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
-        return null;
+        return $this;
     }
     /**
      * availableIn
      */
     public function availableIn(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
 }

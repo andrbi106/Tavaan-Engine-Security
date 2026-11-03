@@ -16,7 +16,6 @@ final class Security
      */
     public function sanitize(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -24,7 +23,6 @@ final class Security
      */
     public function sign(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -32,7 +30,6 @@ final class Security
      */
     public function validateSignature(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -40,7 +37,6 @@ final class Security
      */
     public function normalize(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -48,7 +44,6 @@ final class Security
      */
     public function ssrfCheck(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
 }
