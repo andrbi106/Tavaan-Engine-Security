@@ -4,53 +4,66 @@ declare(strict_types=1);
 
 namespace Tavaan\Engine\Security;
 
-/**
- * RateLimiter — پیاده‌سازی مطابق مستندات.
- *
- * @see docs/03-engines/ (YAML machine-readable block)
- */
 final class RateLimiter
 {
-    /**
-     * attempt
-     */
-    public function attempt(array $credentials): self
+    private array $hits = [];
+    private int $maxAttempts;
+    private int $decaySeconds;
+
+    public function __construct(int $maxAttempts = 60, int $decaySeconds = 60)
     {
-        return false;
+        $this->maxAttempts = $maxAttempts;
+        $this->decaySeconds = $decaySeconds;
     }
-    /**
-     * tooManyAttempts
-     */
-    public function tooManyAttempts()
+
+    public function attempt(string $key, callable $callback): mixed
     {
-        return null;
+        if ($this->tooManyAttempts($key)) {
+            return false;
+        }
+        $this->hit($key);
+        return $callback();
     }
-    /**
-     * hit
-     */
-    public function hit()
+
+    public function tooManyAttempts(string $key): bool
     {
-        return null;
+        $this->cleanup($key);
+        return ($this->hits[$key] ?? 0) >= $this->maxAttempts;
     }
-    /**
-     * remaining
-     */
-    public function remaining()
+
+    public function hit(string $key, int $decaySeconds = 0): int
     {
-        return null;
+        $this->cleanup($key);
+        $decay = $decaySeconds > 0 ? $decaySeconds : $this->decaySeconds;
+        $this->hits[$key] = ($this->hits[$key] ?? 0) + 1;
+        $this->expiry[$key] = time() + $decay;
+        return $this->hits[$key];
     }
-    /**
-     * clear
-     */
-    public function clear(): self
+
+    public function remaining(string $key): int
     {
+        $this->cleanup($key);
+        return max(0, $this->maxAttempts - ($this->hits[$key] ?? 0));
+    }
+
+    public function clear(string $key): self
+    {
+        unset($this->hits[$key], $this->expiry[$key]);
         return $this;
     }
-    /**
-     * availableIn
-     */
-    public function availableIn()
+
+    public function availableIn(string $key): int
     {
-        return null;
+        if (!$this->tooManyAttempts($key)) return 0;
+        return ($this->expiry[$key] ?? 0) - time();
+    }
+
+    private array $expiry = [];
+
+    private function cleanup(string $key): void
+    {
+        if (isset($this->expiry[$key]) && $this->expiry[$key] <= time()) {
+            unset($this->hits[$key], $this->expiry[$key]);
+        }
     }
 }
