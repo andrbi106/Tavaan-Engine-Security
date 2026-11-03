@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tavaan\Engine\Security\Middleware;
 
-use Tavaan\Core\Contracts\Http\MiddlewareInterface;
-use Tavaan\Core\Contracts\Http\RequestInterface;
-use Tavaan\Core\Contracts\Http\ResponseInterface;
-use Tavaan\Core\Exceptions\Http\TooManyRequestsException;
+use Tavaan\Engine\Http\Contracts\MiddlewareInterface;
+use Tavaan\Engine\Http\Contracts\RequestInterface;
+use Tavaan\Engine\Http\Contracts\ResponseInterface;
+use Tavaan\Engine\Http\Exceptions\TooManyRequestsException;
 use Tavaan\Engine\Security\RateLimit\RateLimiter;
 
 /**
