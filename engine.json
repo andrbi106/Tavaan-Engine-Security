@@ -11,7 +11,7 @@
     }
   },
   "providers": [
-    "Tavaan\\Engine\\Security\\SecurityServiceProvider"
+    "Tavaan\\Engine\\Http\\Security\\SecurityServiceProvider"
   ],
   "requires": {
     "php": ">=8.2",
