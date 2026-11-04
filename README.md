@@ -2,6 +2,8 @@
 
 > **امنیت عرضی (CSRF/RateLimit/Sanitizer/SSRF)** — موتور Security در فریمورک تَوان
 
+این موتور از کلاس پایهٔ `Engine` (در [Tavaan-Engine-Core](https://github.com/andrbi106/Tavaan-Engine-Core)) ارث می‌برد.
+
 ## مشخصات
 
 | فیلد | مقدار |
@@ -11,73 +13,66 @@
 | عنوان فارسی | امنیت عرضی (CSRF/RateLimit/Sanitizer/SSRF) |
 | نسخه | `0.1.0` |
 | namespace | `Tavaan\Engine\Security` |
-| نوع | `engine` |
-| Facade | `Security` (accessor: `security`) |
+| کلاس موتور | `Tavaan\Engine\Security\SecurityEngine` |
+| Facade | Security (`security`) |
+
+## کلاس موتور
+
+```php
+namespace Tavaan\Engine\Security;
+
+use Tavaan\EngineCore\Engine as BaseEngine;
+use Tavaan\EngineCore\Contracts\EngineManifestInterface;
+
+final class SecurityEngine extends BaseEngine
+{
+    public function __construct(EngineManifestInterface $manifest)
+    {
+        parent::__construct($manifest);
+    }
+
+    public function register(ContainerInterface $container): void
+    {
+        parent::register($container);
+        // bindingهای اختصاصی موتور
+    }
+
+    public function boot(): void
+    {
+        parent::boot();
+    }
+}
+```
+
+**فایل:** `src/SecurityEngine.php`
 
 ## توضیحات
 
 M4 — CSRF (double-submit)، RateLimit (sliding/fixed/token-bucket)، Security Headers، HTML Sanitizer خالص (allowlist)، SSRF Guard با DNS pinning، Input Normalizer، Signature.
 
-## خطاها (Exceptions)
+## وابستگی‌ها
 
-- `Tavaan\Engine\Security\Exceptions\SsrfException`
+**موتورهای مورد‌نیاز:** `http`, `crypt`, `cache`, `config`
 
-## Facadeها
-
-- `Tavaan\Engine\Security\Facades\Security`
-
-## کلاس‌های اصلی
-
-- `src/Csrf.php`
-- `src/Csrf/CsrfManager.php`
-- `src/Middleware/CsrfVerifyMiddleware.php`
-- `src/Middleware/ThrottleMiddleware.php`
-- `src/Normalize/InputNormalizer.php`
-- `src/RateLimiter.php`
-- `src/Sanitize/HtmlSanitizer.php`
-- `src/Security.php`
-- `src/security.php`
+**موتورهای اختیاری:** `session`, `router`
 
 ## Service Providerها
 
 - `Tavaan\Engine\Security\SecurityServiceProvider`
 
-## وابستگی‌ها
+## سه درگاه ارتباط با سایر موتورها
 
-**موتورهای مورد‌نیاز:**
-
-- `http`
-- `crypt`
-- `cache`
-- `config`
-
-**موتورهای اختیاری:**
-
-- `session`
-- `router`
-
-## پیکربندی
-
-- فایل پیکربندی: `config/security.php`
-- کلید: `security`
+| درگاه | الگو | متدهای convenience |
+|---|---|---|
+| Container | pull-based DI | `make()`, `bound()` |
+| Events | pub/sub | `dispatch()`, `listen()` |
+| EngineBus | point-to-point RPC | `call()`, `offer()` |
 
 ## نصب
 
 ```bash
 git clone https://github.com/andrbi106/Tavaan-Engine-Security.git
 ```
-
-این موتور بخشی از فریمورک تَوان است و معمولاً به‌صورت مستقیم نصب نمی‌شود،
-بلکه توسط [Tavaan-Core](https://github.com/andrbi106/Tavaan-Core) مدیریت می‌شود.
-
-## روابط با سایر مخازن
-
-| مخزن | نقش |
-|---|---|
-| **`andrbi106/Tavaan-Engine-Security`** (این مخزن) | موتور Security |
-| `andrbi106/Tavaan-Engine-Core` | ساختار پایه + درگاه ارتباط موتورها |
-| `andrbi106/Tavaan-Core` | اسکلت اپلیکیشن + همهٔ موتورها |
-| `Derogaramin/Tavaan-Framework` | فریمورک مادر (monorepo) |
 
 ## مجوز
 

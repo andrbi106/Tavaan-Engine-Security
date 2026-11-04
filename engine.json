@@ -39,5 +39,6 @@
     "accessor": "security"
   },
   "docs": "docs/03-engines/security.md",
-  "notes": "M4 — CSRF (double-submit)، RateLimit (sliding/fixed/token-bucket)، Security Headers، HTML Sanitizer خالص (allowlist)، SSRF Guard با DNS pinning، Input Normalizer، Signature."
+  "notes": "M4 — CSRF (double-submit)، RateLimit (sliding/fixed/token-bucket)، Security Headers، HTML Sanitizer خالص (allowlist)، SSRF Guard با DNS pinning، Input Normalizer، Signature.",
+  "class": "Tavaan\\Engine\\Security\\SecurityEngine"
 }
