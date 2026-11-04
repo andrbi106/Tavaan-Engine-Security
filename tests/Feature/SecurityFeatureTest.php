@@ -6,7 +6,7 @@ namespace Tavaan\Engine\Security\Tests\Feature;
 
 use Tavaan\Testing\TestCase;
 use Tavaan\Engine\Security\Csrf;
-use Tavaan\Engine\Security\RateLimiter;
+use Tavaan\Engine\Security\RateLimit\RateLimiter;
 
 /**
  * Feature tests for the security engine.
